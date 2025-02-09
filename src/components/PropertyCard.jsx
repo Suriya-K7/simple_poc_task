@@ -1,4 +1,5 @@
 import { Card, CardContent, Typography, CardMedia } from '@mui/material';
+import { Link } from 'react-router-dom';
 import { LocationOn, BedOutlined, BathtubOutlined, SquareFootOutlined } from '@mui/icons-material';
 
 function PropertyCard({ property }) {
@@ -39,9 +40,11 @@ function PropertyCard({ property }) {
           <Typography variant="h6" className="text-blue-600 font-bold">
             {property.price}
           </Typography>
-          <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200">
-            View Details
-          </button>
+          <Link to={`/property/${property.id}`}>
+            <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200">
+              View Details
+            </button>
+          </Link>
         </div>
       </CardContent>
     </Card>
