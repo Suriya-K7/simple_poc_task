@@ -1,6 +1,6 @@
 import "./App.css";
 import PropertyCard from "./components/PropertyCard";
-import { properties } from "./data/properties";
+import properties from "./data/properties";
 
 function App() {
   return (
