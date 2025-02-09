@@ -18,7 +18,7 @@ function PropertyDetails() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
       <Container className="max-w-4xl mx-auto py-12">
-        <Card className="overflow-hidden rounded-xl shadow-lg">
+        <Card className="overflow-hidden rounded-xl shadow-lg border border-gray-100">
           <CardMedia
             component="img"
             height="400"
@@ -26,7 +26,7 @@ function PropertyDetails() {
             alt={property.name}
             className="h-96 object-cover"
           />
-          <div className="p-8">
+          <div className="p-8 space-y-6">
             <Typography variant="h3" className="text-3xl font-bold mb-4 text-gray-800">
               {property.name}
             </Typography>

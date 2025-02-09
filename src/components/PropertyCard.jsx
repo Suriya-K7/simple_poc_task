@@ -4,7 +4,7 @@ import { LocationOn, BedOutlined, BathtubOutlined, SquareFootOutlined } from '@m
 
 function PropertyCard({ property }) {
   return (
-    <Card className="transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl rounded-xl overflow-hidden">
+    <Card className="transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl rounded-xl overflow-hidden border border-gray-100">
       <CardMedia
         component="img"
         height="200"
@@ -12,7 +12,7 @@ function PropertyCard({ property }) {
         alt={property.name}
         className="h-48 object-cover"
       />
-      <CardContent className="p-6 bg-white">
+      <CardContent className="p-6 bg-white space-y-4">
         <Typography variant="h5" component="h2" className="text-xl font-bold mb-3 text-gray-800">
           {property.name}
         </Typography>
