@@ -7,8 +7,8 @@ import PropertyDetailsPage from "./pages/PropertyDetailsPage";
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 px-4">
-        <Container className="max-w-7xl mx-auto py-16">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 px-2 sm:px-4">
+        <Container className="max-w-7xl mx-auto py-8 sm:py-12 md:py-16">
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/property/:id" element={<PropertyDetailsPage />} />

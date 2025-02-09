@@ -38,7 +38,7 @@ function PropertyDetailsPage() {
               </Typography>
             </div>
 
-            <div className="grid grid-cols-3 gap-6 mb-8 text-gray-600">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-8 text-gray-600">
               <div className="flex items-center">
                 <BedOutlined className="mr-2 text-blue-500" />
                 <Typography variant="h6">{property.beds || '3'} Bedrooms</Typography>

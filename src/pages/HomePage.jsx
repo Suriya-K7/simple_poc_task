@@ -5,11 +5,11 @@ import properties from "../data/properties";
 function HomePage() {
   return (
     <>
-      <div className="text-center mb-12">
+      <div className="text-center mb-8 sm:mb-12 px-4">
         <Typography 
           variant="h3" 
           component="h1" 
-          className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
+          className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
         >
           Featured Properties
         </Typography>

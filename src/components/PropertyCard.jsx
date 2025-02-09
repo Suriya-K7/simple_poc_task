@@ -22,7 +22,7 @@ function PropertyCard({ property }) {
             {property.location}
           </Typography>
         </div>
-        <div className="flex justify-between items-center mb-4 text-gray-600 text-sm">
+        <div className="grid grid-cols-3 gap-2 sm:flex sm:justify-between items-center mb-4 text-gray-600 text-sm">
           <div className="flex items-center">
             <BedOutlined className="mr-1" />
             <span>{property.beds || '3'} beds</span>
@@ -36,7 +36,7 @@ function PropertyCard({ property }) {
             <span>{property.sqft || '1,500'} sqft</span>
           </div>
         </div>
-        <div className="flex justify-between items-center pt-3 border-t border-gray-100">
+        <div className="flex flex-col sm:flex-row sm:justify-between items-center gap-3 pt-3 border-t border-gray-100">
           <Typography variant="h6" className="text-blue-600 font-bold">
             {property.price}
           </Typography>
