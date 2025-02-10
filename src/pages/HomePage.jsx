@@ -9,14 +9,14 @@ export default function HomePage() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    if (search)
-      setData((prev) => {
-        return prev.filter((property) => property.name.toLowerCase().includes(search.toLowerCase()));
-      });
-    else {
+    if (search) {
+      setData(propertyData.filter((property) => 
+        property.name.toLowerCase().includes(search.toLowerCase())
+      ));
+    } else {
       setData(propertyData);
     }
-  }, [search]);
+  }, [search, propertyData]);
 
   return (
     <AppLayout>
