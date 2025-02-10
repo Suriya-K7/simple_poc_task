@@ -36,18 +36,15 @@ const PropertyForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // Form is valid, proceed to submit the data
-        console.log("Submitted Property Data:", formData);
-
         handleAddProperty(formData);
-        
+
         // Show success toast
         toast.success('Property added successfully!');
-        
+
         // Navigate to home page after 3 seconds
         setTimeout(() => {
             navigate('/');
-        }, 3000);
+        }, 2000);
 
         // Reset form
         setFormData({

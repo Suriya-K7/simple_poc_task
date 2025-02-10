@@ -10,7 +10,7 @@ import FavBtn from "./FavBtn";
 
 function PropertyCard({ property }) {
 
-  const { handleFav, handleDelete } = useContext(DataContext);
+  const { handleDelete } = useContext(DataContext);
 
 
   return (

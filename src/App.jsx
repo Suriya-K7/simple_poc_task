@@ -1,20 +1,16 @@
-import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Container } from '@mui/material';
 import HomePage from "./pages/HomePage";
 import PropertyDetailsPage from "./pages/PropertyDetailsPage";
+import AddPropertyPage from "./pages/AddPropertyPage";
 
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 px-2 sm:px-4">
-        <Container className="max-w-7xl mx-auto py-8 sm:py-12 md:py-16">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/property/:id" element={<PropertyDetailsPage />} />
-          </Routes>
-        </Container>
-      </div>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/property/:id" element={<PropertyDetailsPage />} />
+        <Route path="/add-property" element={<AddPropertyPage />} />
+      </Routes>
     </Router>
   );
 }

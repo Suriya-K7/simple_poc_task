@@ -11,8 +11,8 @@ export default function HomePage() {
   useEffect(() => {
     let filteredData = search
       ? propertyData.filter((property) =>
-          property.name.toLowerCase().includes(search.toLowerCase())
-        )
+        property.name.toLowerCase().includes(search.toLowerCase())
+      )
       : [...propertyData];
 
     // Sort the filtered data
@@ -45,7 +45,7 @@ export default function HomePage() {
         <select
           value={sortBy}
           onChange={(e) => setSortBy(e.target.value)}
-          className="rounded-lg border border-gray-300 bg-white px-4 py-2 text-gray-700 shadow-sm focus:border-blue-500 focus:outline-none focus:ring focus:ring-blue-400 transition-shadow hover:shadow-md"
+          className="w-full sm:w-auto rounded-lg border border-gray-300 bg-white px-4 py-2 text-gray-700 shadow-sm focus:border-blue-500 focus:outline-none focus:ring focus:ring-blue-400 transition-shadow hover:shadow-md"
         >
           <option value="name">Sort by Name</option>
           <option value="price">Sort by Price</option>
