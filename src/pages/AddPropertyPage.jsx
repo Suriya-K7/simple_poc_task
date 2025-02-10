@@ -1,4 +1,6 @@
 import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 import TextInput from "../components/TextInput";
 import AppLayout from "../layouts/AppLayout";
 import { generateId } from "../utils/generateId";
@@ -22,6 +24,7 @@ const PropertyForm = () => {
     });
 
     const { handleAddProperty } = useContext(DataContext);
+    const navigate = useNavigate();
 
     const handleChange = ({ target: { name, value } }) => {
         setFormData(prevFormData => ({
@@ -37,8 +40,16 @@ const PropertyForm = () => {
         console.log("Submitted Property Data:", formData);
 
         handleAddProperty(formData);
+        
+        // Show success toast
+        toast.success('Property added successfully!');
+        
+        // Navigate to home page after 3 seconds
+        setTimeout(() => {
+            navigate('/');
+        }, 3000);
 
-        // Reset form after submission
+        // Reset form
         setFormData({
             id: generateId(),
             name: "",
