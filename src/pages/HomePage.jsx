@@ -1,32 +1,38 @@
-import { Typography } from '@mui/material';
+import { useContext, useEffect, useState } from "react";
 import PropertyCard from "../components/PropertyCard";
-import properties from "../data/properties";
+import DataContext from "../context/DataContext";
+import AppLayout from "../layouts/AppLayout";
 
-function HomePage() {
+export default function HomePage() {
+  const { propertyData, search, setSearch } = useContext(DataContext);
+
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    if (search)
+      setData((prev) => {
+        return prev.filter((property) => property.name.toLowerCase().includes(search.toLowerCase()));
+      });
+    else {
+      setData(propertyData);
+    }
+  }, [search]);
+
   return (
-    <>
-      <div className="text-center mb-8 sm:mb-12 px-4">
-        <Typography 
-          variant="h3" 
-          component="h1" 
-          className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
-        >
-          Featured Properties
-        </Typography>
-        <Typography 
-          variant="subtitle1" 
-          className="text-gray-600 mt-4 max-w-2xl mx-auto"
-        >
-          Discover your dream home from our carefully curated selection of premium properties
-        </Typography>
+    <AppLayout>
+      <div className="flex items-center justify-center mt-4">
+        <input
+          type="search"
+          value={search}
+          placeholder="Search..."
+          onChange={(e) => setSearch(e.target.value)}
+          className="w-full sm:w-[300px] rounded-lg border border-gray-300 bg-white px-4 py-2 text-gray-700 shadow-sm focus:border-blue-500 focus:outline-none focus:ring focus:ring-blue-400 transition-shadow hover:shadow-md"
+        />
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {properties.map((property) => (
-          <PropertyCard key={property.id} property={property} />
+      <div className="mx-auto mt-6 grid max-w-2xl auto-rows-fr grid-cols-1 gap-8 sm:mt-6 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+        {data.map((item) => (<PropertyCard key={item.id} property={item} />
         ))}
       </div>
-    </>
+    </AppLayout >
   );
 }
-
-export default HomePage;
