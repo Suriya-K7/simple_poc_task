@@ -61,9 +61,8 @@ export default function PropertyDetailsPage() {
                   {[...Array(5)].map((_, index) => (
                     <svg
                       key={index}
-                      className={`h-5 w-5 ${
-                        index < property?.rating ? 'text-yellow-400' : 'text-gray-300'
-                      }`}
+                      className={`h-5 w-5 ${index < property?.rating ? 'text-yellow-400' : 'text-gray-300'
+                        }`}
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >
