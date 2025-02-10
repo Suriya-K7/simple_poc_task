@@ -1,6 +1,7 @@
 import DotIcon from "../assets/dotIcon";
 import FavIcon from "../assets/FavIcon";
 import { useContext } from "react";
+import toast from 'react-hot-toast';
 import DataContext from "../context/DataContext";
 import DeleteIcon from "../assets/DeleteIcon";
 import { Link } from "react-router-dom";
@@ -23,6 +24,7 @@ function PropertyCard({ property }) {
           e.stopPropagation();
           e.preventDefault();
           handleDelete(property.id);
+          toast.success('Property deleted successfully!');
         }
         }>
         <DeleteIcon className={`w-4 h-4 scale-110 group-hover:scale-115 group-hover:fill-red-400 fill-white`} />
