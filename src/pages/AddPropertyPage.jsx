@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import TextInput from "../components/TextInput";
 import AppLayout from "../layouts/AppLayout";
@@ -168,9 +168,10 @@ const PropertyForm = () => {
 
                     {/* Submit Section */}
                     <div className="mt-6 flex items-center justify-end gap-x-6">
-                        <button type="button" className="text-sm/6 font-semibold text-gray-900">
+                        <Link to="/" className="text-sm/6 font-semibold text-gray-900"
+                        >
                             Cancel
-                        </button>
+                        </Link>
                         <button
                             type="submit"
                             className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
