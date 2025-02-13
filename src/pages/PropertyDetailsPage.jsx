@@ -1,20 +1,44 @@
-import { useContext, useMemo } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import DataContext from "../context/DataContext";
 import AppLayout from "../layouts/AppLayout";
 import ImageViewer from "../components/ImageViewer";
-import FavBtn from "../components/FavBtn";
+import api from "../api/api";
+import FavIcon from "../assets/FavIcon";
 
 export default function PropertyDetailsPage() {
   const { id } = useParams();
-  const { propertyData, handleOpenDialog } = useContext(DataContext);
+
+  const { handleOpenDialog, handleFav, addReview } = useContext(DataContext);
+
+  const [review, setReview] = useState("");
+
+  const [property, setProperty] = useState({});
+
   const navigate = useNavigate();
 
-  // Memoizing the property lookup to avoid unnecessary re-renders
-  const property = useMemo(
-    () => propertyData?.find((item) => item.id == id) || {},
-    [id, propertyData]
-  );
+  const getPropertyById = async () => {
+    try {
+      const { data } = await api(`/${id}`);
+
+      setProperty(data);
+
+    } catch (error) {
+      console.error("Error on fetching property data", error);
+      toast.error("failed to fetch property data");
+
+    }
+  };
+
+  const handleReviewSubmit = () => {
+    addReview(property._id, review);
+    setProperty({ ...property, reviews: [...property.reviews, review] });
+    setReview("");
+  };
+
+  useEffect(() => {
+    getPropertyById();
+  }, [id]);
 
   return (
     <AppLayout>
@@ -22,7 +46,16 @@ export default function PropertyDetailsPage() {
         <div className="lg:grid lg:grid-cols-7 lg:gap-x-8 xl:gap-x-16">
           {/* Property Image & Payment Button */}
           <div className="lg:col-span-4 relative">
-            <FavBtn property={property} />
+            <div className={`absolute duration-300 top-3 group right-3 p-2 rounded-md ring-1  backdrop-blur-md  ${property.isFav ? "ring-red-400" : "ring-white"}`}
+              onClick={(e) => {
+                e.stopPropagation();
+                e.preventDefault();
+                handleFav(property._id);
+                setProperty({ ...property, isFav: !property.isFav });
+              }
+              }>
+              <FavIcon className={`w-4 h-4  group-hover:scale-115  ${property.isFav ? "fill-red-400" : "fill-white"}`} />
+            </div>
             <img
               alt={property?.name || "Property Image"}
               src={property?.image || "/placeholder.jpg"}
@@ -72,7 +105,7 @@ export default function PropertyDetailsPage() {
                 </div>
                 <span className="text-sm text-gray-500">({property?.rating || 0} out of 5)</span>
               </div>
-              <p className="text-sm text-gray-500">{property?.createdDate || "Date not available"}</p>
+              <p className="text-sm text-gray-500">{property?.createdAt?.slice(0, 10) || "Date not available"}</p>
               <p className="text-gray-500">{property?.description || "No description available."}</p>
             </div>
 
@@ -101,6 +134,36 @@ export default function PropertyDetailsPage() {
                   ))
                 ) : (
                   <li className="pl-2">No highlights available.</li>
+                )}
+              </ul>
+            </div>
+
+            {/* Review Section */}
+            <div className="mt-5 border-t border-gray-200 pt-5">
+              <h3 className="text-sm font-medium text-gray-900">Review</h3>
+              <div className="mt-2 flex space-x-2">
+                <input
+                  type="text"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="Write a review..."
+                  value={review}
+                  onChange={(e) => setReview(e.target.value)}
+                />
+                <button className="px-4 py-2 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 transition"
+                  onClick={handleReviewSubmit}
+                >
+                  Add
+                </button>
+              </div>
+              <ul className="mt-4 list-disc space-y-1 pl-5 text-sm text-gray-500">
+                {property?.reviews?.length ? (
+                  property.reviews.map((item, index) => (
+                    <li key={index} className="pl-2">
+                      {item}
+                    </li>
+                  ))
+                ) : (
+                  <li className="pl-2">No Review available.</li>
                 )}
               </ul>
             </div>

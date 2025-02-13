@@ -12,12 +12,7 @@ export default function FavBtn({ property }) {
             onClick={(e) => {
                 e.stopPropagation();
                 e.preventDefault();
-                handleFav(property.id);
-                if (property.isFav) {
-                    toast.error("Removed from favorites");
-                } else {
-                    toast.success("add to favorites");
-                }
+                handleFav(property._id);
             }
             }>
             <FavIcon className={`w-4 h-4  group-hover:scale-115  ${property.isFav ? "fill-red-400" : "fill-white"}`} />

@@ -38,9 +38,6 @@ const PropertyForm = () => {
 
         handleAddProperty(formData);
 
-        // Show success toast
-        toast.success('Property added successfully!');
-
         // Navigate to home page after 3 seconds
         setTimeout(() => {
             navigate('/');
@@ -153,14 +150,6 @@ const PropertyForm = () => {
                                 value={formData.owner}
                                 onChange={handleChange}
                                 placeholder="Enter Owner Name (e.g., Olivia Wilson)"
-                                required
-                            />
-                            <TextInput
-                                id="createdDate"
-                                name="createdDate"
-                                value={formData.createdDate}
-                                onChange={handleChange}
-                                placeholder="Enter Created Date (e.g., Feb 08, 2024)"
                                 required
                             />
                         </div>

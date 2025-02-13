@@ -1,5 +1,4 @@
 import DotIcon from "../assets/dotIcon";
-import FavIcon from "../assets/FavIcon";
 import { useContext } from "react";
 import toast from 'react-hot-toast';
 import DataContext from "../context/DataContext";
@@ -12,10 +11,9 @@ function PropertyCard({ property }) {
 
   const { handleDelete } = useContext(DataContext);
 
-
   return (
-    <Link to={`/property/${property.id}`}
-      key={property.id}
+    <Link to={`/property/${property._id}`}
+      key={property._id}
       className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pt-72 pb-8 sm:pt-48 lg:pt-72 cursor-pointer hover:shadow-[0px_0px_19px_8px_rgba(0,_0,_0,_0.25)]  duration-200 "
     >
       <FavBtn property={property} />
@@ -23,8 +21,7 @@ function PropertyCard({ property }) {
         onClick={(e) => {
           e.stopPropagation();
           e.preventDefault();
-          handleDelete(property.id);
-          toast.success('Property deleted successfully!');
+          handleDelete(property._id);
         }
         }>
         <DeleteIcon className={`w-4 h-4 scale-110 group-hover:scale-115 group-hover:fill-red-400 fill-white`} />
@@ -36,7 +33,7 @@ function PropertyCard({ property }) {
 
       <div className="flex flex-wrap items-center gap-y-1 overflow-hidden text-sm/6 text-gray-300">
         <p className="mr-8">
-          {property.createdDate}
+          {property.createdAt.slice(0, 10)}
         </p>
         <div className="-ml-4 flex items-center gap-x-4">
           <DotIcon />
